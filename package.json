@@ -2,9 +2,16 @@
   "name": "websocket-learning",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "postinstall": "tsc",
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "start:dev": "node dot",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-prod": "cross-env NODE_ENV=production npm run start"
   },
   "repository": {
     "type": "git",
@@ -16,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/IvanBoban/websocket-learning/issues"
   },
-  "homepage": "https://github.com/IvanBoban/websocket-learning#readme"
+  "homepage": "https://github.com/IvanBoban/websocket-learning#readme",
+  "dependencies": {
+    "ws": "^8.2.2"
+  },
+  "devDependencies": {
+    "@types/ws": "^7.4.7",
+    "tslint": "^6.1.3",
+    "typescript": "^4.4.2"
+  }
 }
